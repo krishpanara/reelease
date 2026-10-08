@@ -1,0 +1,26 @@
+{
+  "name": "Smart AI Content Generation Suite",
+  "short_name": "SmartAI",
+  "description": "AI-Powered Backend Management System",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#0e0e0e",
+  "theme_color": "#6366f1",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

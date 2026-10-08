@@ -1,0 +1,9 @@
+{
+    "ignore": [
+        "uploads/*",
+        "locales/*",
+        "node_modules/*",
+        "public/*"
+    ],
+    "delay": "1000"
+}

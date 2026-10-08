@@ -1,0 +1,40 @@
+# Only the API and the Next.js app are tracked
+/reelease-ai-documentation/
+/reelease-ai-next-changed-files/
+/reeleaseai-api-changed-files/
+*.zip
+
+# Dependencies and build output
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+# Environment files (secrets) — copy the .env.example files instead
+.env
+.env.*
+!.env.example
+*.backup
+
+# License / installation state written by the installer (contains the purchase code)
+/reelease-ai-api/public/_log.dic.xml
+/reelease-ai-api/public/_migZip.xml
+/reelease-ai-api/public/cj7kl89.tmp
+/reelease-ai-api/public/fzip.li.dic
+/reelease-ai-api/public/installation.json
+
+# User uploads and AI results (seeded assets that ship with the app stay tracked)
+/reelease-ai-api/uploads/*
+!/reelease-ai-api/uploads/logos/
+!/reelease-ai-api/uploads/landing-page/
+!/reelease-ai-api/uploads/futuristic-city.jpg
+
+# Logs and OS / editor files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
