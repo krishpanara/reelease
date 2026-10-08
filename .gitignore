@@ -38,3 +38,7 @@ npm-debug.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# Deploy script state
+/.deploy-ports
+/.seeded

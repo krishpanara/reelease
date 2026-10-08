@@ -58,23 +58,34 @@ find_free_port() {
 # ---------------------------------------------------------------- mongodb
 # Reelease gets its own MongoDB 8 container (data in docker volume reelease-mongo),
 # so it never shares a database with other apps on this server.
+# mongo 8.0 refuses to start on Linux kernel >= 6.19 (SERVER-121912); 8.2 works.
 MONGO_CONTAINER="reelease-mongo"
+MONGO_IMAGE="mongo:8.2"
 command -v docker >/dev/null || { log "Installing Docker"; curl -fsSL https://get.docker.com | sh; }
+
+# Recreate the container (data volume is kept) if it uses a different image.
+if docker ps -a --format '{{.Names}}' | grep -qx "$MONGO_CONTAINER" && \
+   [ "$(docker inspect -f '{{.Config.Image}}' "$MONGO_CONTAINER")" != "$MONGO_IMAGE" ]; then
+  OLD_MONGO_PORT=$(docker inspect -f '{{(index (index .HostConfig.PortBindings "27017/tcp") 0).HostPort}}' "$MONGO_CONTAINER")
+  docker rm -f "$MONGO_CONTAINER" >/dev/null
+fi
 
 if docker ps -a --format '{{.Names}}' | grep -qx "$MONGO_CONTAINER"; then
   docker start "$MONGO_CONTAINER" >/dev/null
   MONGO_PORT=$(docker port "$MONGO_CONTAINER" 27017/tcp | head -1 | awk -F: '{print $NF}')
 else
   log "Starting MongoDB 8 in Docker"
-  MONGO_PORT=$(find_free_port 27017)
+  MONGO_PORT=$(find_free_port "${OLD_MONGO_PORT:-27017}")
   docker run -d --name "$MONGO_CONTAINER" --restart unless-stopped \
-    -p "127.0.0.1:$MONGO_PORT:27017" -v reelease-mongo:/data/db mongo:8 >/dev/null
+    -p "127.0.0.1:$MONGO_PORT:27017" -v reelease-mongo:/data/db "$MONGO_IMAGE" >/dev/null
 fi
 echo "   MongoDB -> 127.0.0.1:$MONGO_PORT"
+MONGO_UP=0
 for i in $(seq 1 30); do
-  docker exec "$MONGO_CONTAINER" mongosh --quiet --eval 'db.runCommand({ping:1}).ok' >/dev/null 2>&1 && break
+  docker exec "$MONGO_CONTAINER" mongosh --quiet --eval 'db.runCommand({ping:1}).ok' >/dev/null 2>&1 && { MONGO_UP=1; break; }
   sleep 2
 done
+[ "$MONGO_UP" -eq 1 ] || die "MongoDB did not start. Check: docker logs $MONGO_CONTAINER"
 
 # ---------------------------------------------------------------- code
 if [ -d "$APP_DIR/.git" ]; then
@@ -159,9 +170,12 @@ log "Installing API dependencies"
 cd "$API_DIR" && npm ci --omit=dev || npm install --omit=dev
 mkdir -p "$API_DIR/uploads"
 
-if [ "$FIRST_INSTALL" -eq 1 ]; then
+SEED_MARKER="$APP_DIR/.seeded"
+if [ ! -f "$SEED_MARKER" ]; then
   log "Seeding database (first install only)"
   npm run seed
+  touch "$SEED_MARKER"
+  FIRST_INSTALL=1
 fi
 
 log "Installing web dependencies and building"
