@@ -42,29 +42,6 @@ if ! command -v node >/dev/null || [ "$(node -v | cut -d. -f1 | tr -d v)" -lt 22
 fi
 command -v pm2 >/dev/null || npm install -g pm2
 
-if ! command -v mongod >/dev/null; then
-  log "Installing MongoDB 8"
-  . /etc/os-release
-  curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server-8.0.gpg --yes
-  echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu ${VERSION_CODENAME}/mongodb-org/8.0 multiverse" \
-    > /etc/apt/sources.list.d/mongodb-org-8.0.list
-  apt-get update -y
-  apt-get install -y mongodb-org
-fi
-systemctl enable --now mongod
-
-# ---------------------------------------------------------------- code
-if [ -d "$APP_DIR/.git" ]; then
-  log "Pulling latest code in $APP_DIR"
-  git -C "$APP_DIR" fetch origin "$BRANCH"
-  git -C "$APP_DIR" checkout "$BRANCH"
-  git -C "$APP_DIR" pull --ff-only origin "$BRANCH"
-else
-  log "Cloning $REPO_URL into $APP_DIR"
-  mkdir -p "$(dirname "$APP_DIR")"
-  git clone -b "$BRANCH" "$REPO_URL" "$APP_DIR"
-fi
-
 # ---------------------------------------------------------------- ports
 port_in_use() { ss -ltnH "( sport = :$1 )" 2>/dev/null | grep -q .; }
 
@@ -78,6 +55,40 @@ find_free_port() {
   echo "$p"
 }
 
+# ---------------------------------------------------------------- mongodb
+# Reelease gets its own MongoDB 8 container (data in docker volume reelease-mongo),
+# so it never shares a database with other apps on this server.
+MONGO_CONTAINER="reelease-mongo"
+command -v docker >/dev/null || { log "Installing Docker"; curl -fsSL https://get.docker.com | sh; }
+
+if docker ps -a --format '{{.Names}}' | grep -qx "$MONGO_CONTAINER"; then
+  docker start "$MONGO_CONTAINER" >/dev/null
+  MONGO_PORT=$(docker port "$MONGO_CONTAINER" 27017/tcp | head -1 | awk -F: '{print $NF}')
+else
+  log "Starting MongoDB 8 in Docker"
+  MONGO_PORT=$(find_free_port 27017)
+  docker run -d --name "$MONGO_CONTAINER" --restart unless-stopped \
+    -p "127.0.0.1:$MONGO_PORT:27017" -v reelease-mongo:/data/db mongo:8 >/dev/null
+fi
+echo "   MongoDB -> 127.0.0.1:$MONGO_PORT"
+for i in $(seq 1 30); do
+  docker exec "$MONGO_CONTAINER" mongosh --quiet --eval 'db.runCommand({ping:1}).ok' >/dev/null 2>&1 && break
+  sleep 2
+done
+
+# ---------------------------------------------------------------- code
+if [ -d "$APP_DIR/.git" ]; then
+  log "Pulling latest code in $APP_DIR"
+  git -C "$APP_DIR" fetch origin "$BRANCH"
+  git -C "$APP_DIR" checkout "$BRANCH"
+  git -C "$APP_DIR" pull --ff-only origin "$BRANCH"
+else
+  log "Cloning $REPO_URL into $APP_DIR"
+  mkdir -p "$(dirname "$APP_DIR")"
+  git clone -b "$BRANCH" "$REPO_URL" "$APP_DIR"
+fi
+
+# ---------------------------------------------------------------- app ports
 # Stop our own apps first so their old ports count as free again.
 pm2 delete "$API_NAME" >/dev/null 2>&1 || true
 pm2 delete "$WEB_NAME" >/dev/null 2>&1 || true
@@ -133,7 +144,7 @@ set_env "$API_ENV" APP_URL "$SITE_URL/backend"
 set_env "$API_ENV" FRONTEND_URL "$SITE_URL"
 set_env "$API_ENV" ALLOWED_ORIGINS "$SITE_URL"
 set_env "$API_ENV" SERVER_ADDR "$(curl -fsS4 https://api.ipify.org || echo 127.0.0.1)"
-[ -n "$(get_env "$API_ENV" MONGODB_URI)" ] || set_env "$API_ENV" MONGODB_URI "mongodb://127.0.0.1:27017/reelease-ai"
+set_env "$API_ENV" MONGODB_URI "mongodb://127.0.0.1:$MONGO_PORT/reelease-ai"
 
 log "Writing web app .env.local"
 WEB_ENV="$WEB_DIR/.env.local"
