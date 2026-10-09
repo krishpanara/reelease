@@ -36,7 +36,7 @@ export const LogoDesigner = ({
   // Default configuration for the logo design
   const [config, setConfig] = useState<LogoDesignConfig>({
     symbolId: 'sleek_r',
-    text: 'ReelEase AI',
+    text: 'Social Ominfinitive',
     fontFamily: 'outfit',
     fontWeight: '800',
     fontSize: 32,

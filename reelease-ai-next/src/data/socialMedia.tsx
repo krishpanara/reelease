@@ -113,13 +113,13 @@ export const mockAccounts = [
   { id: 'm1', account_name: '@reel.ease', platform: 'instagram', account_type: 'Business', profile_picture: '' },
   { id: 'm2', account_name: '@marketing.hub', platform: 'instagram', account_type: 'Business', profile_picture: '' },
   { id: 'm3', account_name: '@brand.studio', platform: 'instagram', account_type: 'Creator', profile_picture: '' },
-  { id: 'm4', account_name: 'ReelEase', platform: 'facebook', account_type: 'Page', profile_picture: '' },
+  { id: 'm4', account_name: 'Social Ominfinitive', platform: 'facebook', account_type: 'Page', profile_picture: '' },
   { id: 'm5', account_name: 'Marketing Hub', platform: 'facebook', account_type: 'Page', profile_picture: '' },
   { id: 'm6', account_name: 'Brand Studio', platform: 'facebook', account_type: 'Page', profile_picture: '' },
 
   {
     id: 'm7',
-    account_name: 'ReelEase Company',
+    account_name: 'Social Ominfinitive Company',
     platform: 'linkedin',
     account_type: 'Company Page',
     profile_picture: '',
@@ -129,7 +129,7 @@ export const mockAccounts = [
   { id: 'm9', account_name: '@reel_ease', platform: 'twitter', account_type: 'Profile', profile_picture: '' },
   { id: 'm10', account_name: '@marketing_hub', platform: 'twitter', account_type: 'Profile', profile_picture: '' },
 
-  { id: 'm11', account_name: 'ReelEase', platform: 'youtube', account_type: 'Channel', profile_picture: '' },
+  { id: 'm11', account_name: 'Social Ominfinitive', platform: 'youtube', account_type: 'Channel', profile_picture: '' },
   { id: 'm12', account_name: 'Marketing Hub', platform: 'youtube', account_type: 'Channel', profile_picture: '' },
 ]
 

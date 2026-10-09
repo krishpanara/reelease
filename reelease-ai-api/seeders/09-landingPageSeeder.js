@@ -351,14 +351,14 @@ async function up({ db: dbModels }) {
       testimonials: {
         section_badge: 'Wall of Love',
         section_heading: 'Trusted by 100K+ Creators Worldwide',
-        section_subheading: 'Join thousands of creators who are already using Reelease AI to supercharge their content.',
+        section_subheading: 'Join thousands of creators who are already using Social Ominfinitive to supercharge their content.',
         testimonial_ids: testimonials.map(t => t._id),
       },
 
       faq: {
         section_badge: 'Common Questions',
         section_heading: 'Frequently Asked Questions',
-        section_subheading: "Everything you need to know about Reelease AI. Can't find the answer you're looking for? Contact our team.",
+        section_subheading: "Everything you need to know about Social Ominfinitive. Can't find the answer you're looking for? Contact our team.",
         faq_ids: faqs.map(f => f._id),
       },
 
@@ -366,18 +366,18 @@ async function up({ db: dbModels }) {
         section_badge: 'Get In Touch',
         heading: 'Have Questions? We Have Answers',
         subheading: 'Our support team is available around the clock to help you with anything you need.',
-        email: 'hello@reelease.ai',
-        phone: null,
+        email: 'info@omfinitive.com',
+        phone: '+91 99794 57999',
         address: null,
         live_chat_label: 'Available 24/7',
       },
 
       footer: {
         tagline: 'The AI-powered platform for creators and businesses to build, publish and grow.',
-        copyright: '© 2024 Reelease AI. All Rights Reserved.',
-        address: '123 AI Street, Tech City, TC 12345',
-        phone: '+1 (234) 567-890',
-        email: 'support@reelease.ai',
+        copyright: '© 2026 Social Ominfinitive. All Rights Reserved.',
+        address: 'Africa • Qatar • USA',
+        phone: '+91 99794 57999',
+        email: 'info@omfinitive.com',
         social_links: [
           { name: 'Facebook', href: 'https://www.facebook.com', icon: 'Facebook' },
           { name: 'Twitter', href: 'https://twitter.com', icon: 'Twitter' },

@@ -17,8 +17,8 @@ const SidebarLogo = ({ isCollapsed, onClick }: { isCollapsed?: boolean; onClick?
   const isDark = resolvedTheme === 'dark'
 
   // Brand Logo 1: Expanded (Main Brand Logo)
-  const darkExpanded = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/light-logo1.png'
-  const lightExpanded = settings?.logo_light_url ? getMediaUrl(settings.logo_light_url) : '/images/dark-logo1.png'
+  const darkExpanded = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/dark-logo1.png'
+  const lightExpanded = settings?.logo_light_url ? getMediaUrl(settings.logo_light_url) : '/images/light-logo1.png'
   const expandedLogoUrl = !mounted ? darkExpanded : (isDark ? darkExpanded : lightExpanded)
 
   // Brand Logo 2: Collapsed (Small Logo/Icon)

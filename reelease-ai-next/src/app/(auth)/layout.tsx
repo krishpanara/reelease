@@ -36,8 +36,8 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   }, [isLoading, isAuthenticated, router])
 
   const isDark = resolvedTheme === 'dark'
-  const darkExpanded = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/light-logo1.png'
-  const lightExpanded = settings?.logo_light_url ? getMediaUrl(settings.logo_light_url) : '/images/dark-logo1.png'
+  const darkExpanded = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/dark-logo1.png'
+  const lightExpanded = settings?.logo_light_url ? getMediaUrl(settings.logo_light_url) : '/images/light-logo1.png'
   const displayLogo = !mounted ? darkExpanded : (isDark ? darkExpanded : lightExpanded)
 
   if (isLoading || isAuthenticated) {
@@ -234,7 +234,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
           <div className="absolute -bottom-[15%] z-40 w-[82%] aspect-[576/527] left-[9%] lg:left-[14%] xl:left-[12%] 2xl:left-[9%]">
             <Image
               src={!mounted ? '/images/auth/bot.png' : (isDark ? '/images/auth/dark/bot.png' : '/images/auth/bot.png')}
-              alt="ReelEase AI Bot"
+              alt="Social Ominfinitive Bot"
               fill
               className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
               priority

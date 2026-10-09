@@ -4,8 +4,9 @@ import { navLinks } from '@/data/landing'
 import useSettings from '@/hooks/useSettings'
 import { getMediaUrl } from '@/utils'
 import { motion } from 'framer-motion'
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Youtube } from 'lucide-react'
 import { XIcon as Twitter } from '@/components/ui/XIcon'
+import { WhatsAppIcon, whatsAppLink } from '@/components/ui/WhatsAppIcon'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +20,9 @@ export default function LandingFooter({ data }: { data?: LandingPageData['footer
   const { data: pagesData } = useGetPublicPagesQuery()
   const pages = pagesData?.pages || []
 
-  const landingLogoUrl = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/light-logo1.png'
+  const landingLogoUrl = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/dark-logo1.png'
+  const phone = data?.phone || '+91 99794 57999'
+  const email = data?.email || 'info@omfinitive.com'
 
   return (
     <footer className="relative border-t border-white/5 bg-primary/2 pt-12 md:pt-20 pb-8 md:pb-10">
@@ -119,15 +122,28 @@ export default function LandingFooter({ data }: { data?: LandingPageData['footer
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-white/60 text-sm">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span>{data?.address || '123 AI Street, Tech City, TC 12345'}</span>
+                <span>{data?.address || 'Africa • Qatar • USA'}</span>
               </li>
-              <li className="flex items-center gap-3 text-white/60 text-sm">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span>{data?.phone || '+1 (234) 567-890'}</span>
+              <li>
+                <a
+                  href={whatsAppLink(phone)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`WhatsApp ${phone}`}
+                  className="flex items-center gap-3 text-white/60 hover:text-primary transition-colors text-sm"
+                >
+                  <WhatsAppIcon className="w-5 h-5 text-primary shrink-0" />
+                  <span>{phone}</span>
+                </a>
               </li>
-              <li className="flex items-center gap-3 text-white/60 text-sm">
-                <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>{data?.email || 'support@example.ai'}</span>
+              <li>
+                <a
+                  href={`mailto:${email}`}
+                  className="flex items-center gap-3 text-white/60 hover:text-primary transition-colors text-sm"
+                >
+                  <Mail className="w-5 h-5 text-primary shrink-0" />
+                  <span>{email}</span>
+                </a>
               </li>
             </ul>
           </div>

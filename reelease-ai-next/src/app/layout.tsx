@@ -5,14 +5,14 @@ import Providers from './Providers'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Smart AI Content Generation Suite',
-    template: '%s | Smart AI Content Generation Suite',
+    default: 'Social Ominfinitive',
+    template: '%s | Social Ominfinitive',
   },
-  description: 'AI-Powered Backend Management System',
+  description: 'AI-powered social media content creation and publishing',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Smart AI Content Generation Suite',
+    title: 'Social Ominfinitive',
   },
   formatDetection: {
     telephone: false,

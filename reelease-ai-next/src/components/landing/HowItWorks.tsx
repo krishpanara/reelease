@@ -57,7 +57,7 @@ export default function HowItWorks() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px] pointer-events-none -z-10" />
 
       <div className="container mx-auto px-6">
-        {/* Section 1: How Reelease AI Works */}
+        {/* Section 1: How Social Ominfinitive Works */}
         <div className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -68,7 +68,7 @@ export default function HowItWorks() {
           >
             How{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary bg-[length:200%_auto] animate-gradient font-black">
-              Reelease AI
+              Social Ominfinitive
             </span>{' '}
             Works
           </motion.h2>

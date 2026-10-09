@@ -576,7 +576,7 @@ function LinkedInProfile({ feature }: any) {
         </div>
       </div>
       <div className="mt-10 px-4 flex-1">
-        <h4 className="text-base font-bold">Reelease AI</h4>
+        <h4 className="text-base font-bold">Social Ominfinitive</h4>
         <p className="text-xs text-white/80">Automating Next-Gen Content Creation and Deployment</p>
         <p className="text-[10px] text-white/40 mt-1">San Francisco, CA • 10,000+ followers</p>
         <div className="flex gap-2 mt-4">
@@ -603,8 +603,8 @@ function TwitterPost({ feature }: any) {
         </div>
         <div>
           <div className="flex items-center gap-1">
-            <span className="text-xs font-bold">Reelease AI</span>
-            <span className="text-[10px] text-white/60">@reelease_ai</span>
+            <span className="text-xs font-bold">Social Ominfinitive</span>
+            <span className="text-[10px] text-white/60">@social_ominfinitive</span>
           </div>
           <div className="h-1.5 w-16 bg-white/20 rounded-full mt-1" />
         </div>
@@ -653,8 +653,8 @@ function TwitterThread({ feature }: any) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="text-[11px] font-bold">Reelease AI</span>
-              <span className="text-[9px] text-white/60">@reelease_ai · 1/3</span>
+              <span className="text-[11px] font-bold">Social Ominfinitive</span>
+              <span className="text-[9px] text-white/60">@social_ominfinitive · 1/3</span>
             </div>
             <p className="text-[11px] text-white/90 mt-1">
               {feature?.title || "How to scale your business with AI content automation in 2026? 🧵"}
@@ -672,8 +672,8 @@ function TwitterThread({ feature }: any) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="text-[11px] font-bold">Reelease AI</span>
-              <span className="text-[9px] text-white/60">@reelease_ai · 2/3</span>
+              <span className="text-[11px] font-bold">Social Ominfinitive</span>
+              <span className="text-[9px] text-white/60">@social_ominfinitive · 2/3</span>
             </div>
             <p className="text-[11px] text-white/90 mt-1">
               1. Standardize your templates. Instead of starting from scratch every single time, use AI models tailored to your brand's voice.
@@ -689,8 +689,8 @@ function TwitterThread({ feature }: any) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="text-[11px] font-bold">Reelease AI</span>
-              <span className="text-[9px] text-white/60">@reelease_ai · 3/3</span>
+              <span className="text-[11px] font-bold">Social Ominfinitive</span>
+              <span className="text-[9px] text-white/60">@social_ominfinitive · 3/3</span>
             </div>
             <p className="text-[11px] text-white/90 mt-1">
               2. Automate scheduling. Post consistently across LinkedIn, Twitter, and Instagram using our unified calendar. Click the link to start today! 👇
@@ -713,8 +713,8 @@ function TwitterProfile({ feature }: any) {
       <div className="mt-10 px-4 flex-1">
         <div className="flex justify-between items-start">
           <div>
-            <h4 className="text-sm font-bold">Reelease AI</h4>
-            <p className="text-[10px] text-white/60">@reelease_ai</p>
+            <h4 className="text-sm font-bold">Social Ominfinitive</h4>
+            <p className="text-[10px] text-white/60">@social_ominfinitive</p>
           </div>
           <Button className="bg-white hover:bg-white/90 text-black text-[10px] h-7 px-3 rounded-full font-bold">Follow</Button>
         </div>
@@ -723,7 +723,7 @@ function TwitterProfile({ feature }: any) {
         </p>
         <div className="flex gap-4 mt-3 text-[10px] text-white/60">
           <span>📍 San Francisco, CA</span>
-          <span>🔗 reelease.ai</span>
+          <span>🔗 social.omfinitive.xyz</span>
         </div>
         <div className="flex gap-3 mt-3 text-[11px]">
           <span><strong className="text-white">142</strong> Following</span>
@@ -764,7 +764,7 @@ function YouTubeShorts({ feature }: any) {
           <div className="flex-1 pb-4 text-left">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-[10px] font-bold text-white">RA</div>
-              <span className="text-white text-[11px] font-bold">@ReeleaseAI</span>
+              <span className="text-white text-[11px] font-bold">@SocialOminfinitive</span>
               <button className="bg-red-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">Subscribe</button>
             </div>
             <p className="text-white text-xs mb-2 line-clamp-2">Creating cinematic text-to-video with AI! 🎥🔥</p>
@@ -810,7 +810,7 @@ function YouTubeVideo({ feature }: any) {
           <div className="flex items-center gap-2 mb-4">
             <div className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-[10px] font-bold text-white">RA</div>
             <div>
-              <span className="text-[10px] font-bold block">Reelease AI</span>
+              <span className="text-[10px] font-bold block">Social Ominfinitive</span>
               <span className="text-[8px] text-white/60">50K subscribers</span>
             </div>
             <button className="ml-auto bg-white text-black text-[9px] font-bold px-2 py-1 rounded-full">Subscribe</button>
@@ -829,14 +829,14 @@ function YouTubeChannel({ feature }: any) {
   return (
     <div className="h-full w-full bg-[#0F0F0F] text-white flex flex-col text-left">
       <div className="h-16 bg-gradient-to-r from-red-600 to-red-800 relative mt-6 animate-pulse">
-        <div className="absolute inset-0 flex items-center justify-center font-bold text-xs tracking-wider bg-black/10">REELEASE AI</div>
+        <div className="absolute inset-0 flex items-center justify-center font-bold text-xs tracking-wider bg-black/10">SOCIAL OMINFINITIVE</div>
       </div>
       <div className="p-4 flex-1">
         <div className="flex gap-2 items-center mb-3">
           <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-xs font-bold text-white">RA</div>
           <div>
-            <h4 className="text-xs font-bold">Reelease AI</h4>
-            <span className="text-[8px] text-white/40">@ReeleaseAI • 50K subs • 120 videos</span>
+            <h4 className="text-xs font-bold">Social Ominfinitive</h4>
+            <span className="text-[8px] text-white/40">@SocialOminfinitive • 50K subs • 120 videos</span>
           </div>
         </div>
         <button className="w-full bg-white text-black text-[10px] font-bold h-7 rounded-full mb-3">Subscribe</button>
@@ -871,7 +871,7 @@ function ThreadsPost({ feature }: any) {
           </div>
           <div>
             <div className="flex items-center gap-1">
-              <span className="text-xs font-bold hover:underline cursor-pointer">reelease_ai</span>
+              <span className="text-xs font-bold hover:underline cursor-pointer">social_ominfinitive</span>
               <span className="text-[10px] text-neutral-500">2h</span>
             </div>
             <div className="h-1.5 w-12 bg-white/10 rounded-full mt-1" />
@@ -881,7 +881,7 @@ function ThreadsPost({ feature }: any) {
       </div>
       <div className="flex-1 overflow-y-auto no-scrollbar mt-3">
         <p className="text-xs text-[#F3F5F7]/90 mb-3 leading-relaxed">
-          {feature?.description || "Simplify your social media workflow. With Reelease AI, draft, schedule, and preview posts across all major platforms from a single intuitive dashboard. 🚀"}
+          {feature?.description || "Simplify your social media workflow. With Social Ominfinitive, draft, schedule, and preview posts across all major platforms from a single intuitive dashboard. 🚀"}
         </p>
         <div className="relative aspect-video w-full rounded-xl bg-black/40 overflow-hidden border border-white/10 mb-3">
           <Image
@@ -927,7 +927,7 @@ function ThreadsThread({ feature }: any) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="text-[11px] font-bold">reelease_ai</span>
+              <span className="text-[11px] font-bold">social_ominfinitive</span>
               <span className="text-[9px] text-neutral-500">1/3</span>
             </div>
             <p className="text-[11px] text-neutral-200 mt-1 leading-relaxed">
@@ -946,7 +946,7 @@ function ThreadsThread({ feature }: any) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="text-[11px] font-bold">reelease_ai</span>
+              <span className="text-[11px] font-bold">social_ominfinitive</span>
               <span className="text-[9px] text-neutral-500">2/3</span>
             </div>
             <p className="text-[11px] text-neutral-200 mt-1 leading-relaxed">
@@ -964,7 +964,7 @@ function ThreadsThread({ feature }: any) {
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1">
-              <span className="text-[11px] font-bold">reelease_ai</span>
+              <span className="text-[11px] font-bold">social_ominfinitive</span>
               <span className="text-[9px] text-neutral-500">3/3</span>
             </div>
             <p className="text-[11px] text-neutral-200 mt-1 leading-relaxed">
@@ -982,9 +982,9 @@ function ThreadsProfile({ feature }: any) {
     <div className="h-full w-full bg-[#101010] text-[#F3F5F7] flex flex-col text-left p-4">
       <div className="mt-6 flex justify-between items-start">
         <div>
-          <h4 className="text-lg font-extrabold text-white">Reelease AI</h4>
+          <h4 className="text-lg font-extrabold text-white">Social Ominfinitive</h4>
           <div className="flex items-center gap-1.5 mt-1">
-            <span className="text-xs text-neutral-300">reelease_ai</span>
+            <span className="text-xs text-neutral-300">social_ominfinitive</span>
             <span className="text-[9px] bg-neutral-800 text-neutral-400 px-1.5 py-0.5 rounded-full font-medium">threads.com</span>
           </div>
         </div>
@@ -1003,7 +1003,7 @@ function ThreadsProfile({ feature }: any) {
           </div>
           <span>52.8K followers</span>
           <span>•</span>
-          <span className="hover:underline cursor-pointer">reelease.ai</span>
+          <span className="hover:underline cursor-pointer">social.omfinitive.xyz</span>
         </div>
         <div className="flex gap-2.5 mt-5">
           <Button className="flex-1 bg-white hover:bg-neutral-200 text-black text-xs h-9 rounded-xl font-bold transition-all">Follow</Button>

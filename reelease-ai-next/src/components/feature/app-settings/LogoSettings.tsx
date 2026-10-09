@@ -126,7 +126,7 @@ const LogoSettings = () => {
 
   const [logoConfig, setLogoConfig] = useState<LogoDesignConfig>({
     symbolId: 'sleek_r',
-    text: 'ReelEase AI',
+    text: 'Social Ominfinitive',
     fontFamily: 'outfit',
     fontWeight: '800',
     fontSize: 32,

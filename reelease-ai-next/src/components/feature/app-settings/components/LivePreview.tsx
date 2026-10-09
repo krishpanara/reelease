@@ -148,7 +148,7 @@ export const LivePreview = ({
                     'text-[11px] font-black tracking-tight',
                     theme === 'dark' ? 'text-white' : 'text-slate-900'
                   )}>
-                    ReelEase AI
+                    Social Ominfinitive
                   </span>
                 </div>
               )}

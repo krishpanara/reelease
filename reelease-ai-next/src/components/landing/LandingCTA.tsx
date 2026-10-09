@@ -37,7 +37,7 @@ export default function LandingCTA() {
                 Start <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400 font-black">Creating Viral Content</span> Today
               </h2>
               <p className="text-white/60 text-base md:text-lg max-w-xl">
-                Join thousands of creators who are growing faster with Reelease AI.
+                Join thousands of creators who are growing faster with Social Ominfinitive.
               </p>
             </div>
 

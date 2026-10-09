@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deploy / update Reelease AI on an Ubuntu server.
+# Deploy / update Social Ominfinitive on an Ubuntu server.
 #
 # First time:
 #   git clone https://github.com/krishpanara/reelease.git /var/www/reelease
@@ -8,7 +8,10 @@
 # Update later (pulls latest code, rebuilds, restarts):
 #   cd /var/www/reelease && sudo bash deploy.sh
 #
-# Optional overrides:  DOMAIN=...  CERTBOT_EMAIL=...  ADMIN_EMAIL=...  ADMIN_PASSWORD=...
+# Optional overrides:  DOMAIN=...  CERTBOT_EMAIL=...
+#   ADMIN_EMAIL=...  ADMIN_NAME=...  ADMIN_PASSWORD=...
+#   DEFAULT_USER_EMAIL=...  DEFAULT_USER_NAME=...  DEFAULT_USER_PASSWORD=...
+# Account values are saved to reelease-ai-api/.env and kept for later deploys.
 
 set -euo pipefail
 
@@ -141,13 +144,15 @@ fi
 [ -n "$(get_env "$API_ENV" TOKEN_ENCRYPTION_KEY)" ] || set_env "$API_ENV" TOKEN_ENCRYPTION_KEY "$(openssl rand -hex 48)"
 [ -n "$(get_env "$API_ENV" SESSION_SECRET)" ]       || set_env "$API_ENV" SESSION_SECRET "$(openssl rand -hex 32)"
 
-if [ "$FIRST_INSTALL" -eq 1 ]; then
-  ADMIN_PASSWORD="${ADMIN_PASSWORD:-$(openssl rand -base64 18 | tr -d '/+=')}"
-  set_env "$API_ENV" ADMIN_PASSWORD "$ADMIN_PASSWORD"
-  set_env "$API_ENV" DEFAULT_USER_PASSWORD "$(openssl rand -base64 18 | tr -d '/+=')"
-  [ -n "${ADMIN_EMAIL:-}" ] && set_env "$API_ENV" ADMIN_EMAIL "$ADMIN_EMAIL"
-fi
+# Login accounts: values passed on the command line are saved to .env and reused on
+# every later deploy (scripts/ensure-accounts.js applies them to the database).
+for key in ADMIN_EMAIL ADMIN_NAME ADMIN_PASSWORD DEFAULT_USER_EMAIL DEFAULT_USER_NAME DEFAULT_USER_PASSWORD; do
+  if [ -n "${!key:-}" ]; then set_env "$API_ENV" "$key" "${!key}"; fi
+done
+[ -n "$(get_env "$API_ENV" ADMIN_PASSWORD)" ]        || set_env "$API_ENV" ADMIN_PASSWORD "$(openssl rand -base64 18 | tr -d '/+=')"
+[ -n "$(get_env "$API_ENV" DEFAULT_USER_PASSWORD)" ] || set_env "$API_ENV" DEFAULT_USER_PASSWORD "$(openssl rand -base64 18 | tr -d '/+=')"
 
+set_env "$API_ENV" APP_NAME "Social Ominfinitive"
 # The web app owns /api on this domain, so the API's public files live under /backend.
 set_env "$API_ENV" NODE_ENV production
 set_env "$API_ENV" PORT "$API_PORT"
@@ -177,6 +182,11 @@ if [ ! -f "$SEED_MARKER" ]; then
   touch "$SEED_MARKER"
   FIRST_INSTALL=1
 fi
+
+log "Applying app name, branding and landing page images to the database"
+npm run rebrand
+npm run landing-images
+npm run accounts
 
 log "Installing web dependencies and building"
 cd "$WEB_DIR" && (npm ci || npm install)
@@ -259,8 +269,7 @@ log "Deployed"
 echo "   Site:       $SITE_URL"
 echo "   Installer:  $SITE_URL/install   (enter your Envato purchase code first)"
 echo "   Ports:      API $API_PORT, Web $WEB_PORT  (saved in $PORTS_FILE)"
-if [ "$FIRST_INSTALL" -eq 1 ]; then
-  echo "   Admin:      $(get_env "$API_ENV" ADMIN_EMAIL) / $(get_env "$API_ENV" ADMIN_PASSWORD)"
-  echo "               (also stored in $API_ENV; change it after first login)"
-fi
+echo "   Admin:      $(get_env "$API_ENV" ADMIN_EMAIL)"
+echo "   User:       $(get_env "$API_ENV" DEFAULT_USER_EMAIL)"
+echo "               (passwords are in $API_ENV)"
 echo "   Logs:       pm2 logs $API_NAME   |   pm2 logs $WEB_NAME"

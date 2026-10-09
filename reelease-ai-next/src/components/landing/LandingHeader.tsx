@@ -25,7 +25,7 @@ export default function LandingHeader() {
   const { t } = useTranslation()
   const { settings } = useSettings()
 
-  const landingLogoUrl = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/light-logo1.png'
+  const landingLogoUrl = settings?.logo_dark_url ? getMediaUrl(settings.logo_dark_url) : '/images/dark-logo1.png'
 
   useEffect(() => {
     const onScroll = () => {

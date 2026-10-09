@@ -60,7 +60,7 @@ export default function FooterForm({ data, onSubmit, isLoading }: FooterFormProp
                 <TextInput
                   name="address"
                   label={t('address')}
-                  placeholder="123 AI Street, Tech City, TC 12345"
+                  placeholder="Africa • Qatar • USA"
                 />
               </div>
 

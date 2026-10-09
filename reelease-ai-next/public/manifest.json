@@ -1,7 +1,7 @@
 {
-  "name": "Smart AI Content Generation Suite",
-  "short_name": "SmartAI",
-  "description": "AI-Powered Backend Management System",
+  "name": "Social Ominfinitive",
+  "short_name": "Ominfinitive",
+  "description": "AI-powered social media content creation and publishing",
   "start_url": "/login",
   "display": "standalone",
   "background_color": "#0e0e0e",

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { Mail, MessageCircle, Send, Loader2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Textarea } from '../ui/textArea'
+import { WhatsAppIcon, whatsAppLink } from '../ui/WhatsAppIcon'
 import Input from '../ui/input'
 import { useCreateContactInquiryMutation } from '@/redux/api/contactInquiryApi'
 import { toast } from 'sonner'
@@ -19,6 +20,8 @@ export default function LandingContact({ data }: { data?: LandingPageData['conta
   const { t } = useTranslation()
   const { registerRef } = useSectionRefs()
   const [createInquiry] = useCreateContactInquiryMutation()
+  const email = data?.email || 'info@omfinitive.com'
+  const phone = data?.phone || '+91 99794 57999'
 
   const initialValues: ContactFormValues = {
     name: '',
@@ -93,24 +96,24 @@ export default function LandingContact({ data }: { data?: LandingPageData['conta
             </motion.p>
 
             <div className="space-y-8 flex flex-col sm:flex-row gap-6">
-              <div className="flex items-center gap-4 mb-0">
+              <a href={`mailto:${email}`} className="flex items-center gap-4 mb-0 group">
                 <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
                   <Mail className="w-6 h-6 text-emerald-400" />
                 </div>
                 <div>
                   <h4 className="text-white text-sm font-bold">{t('email_us')}</h4>
-                  <p className="text-base text-white/60">{data?.email || 'hello@example.ai'}</p>
+                  <p className="text-base text-white/60 group-hover:text-primary transition-colors">{email}</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-4">
+              </a>
+              <a href={whatsAppLink(phone)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
                 <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                  <MessageCircle className="w-6 h-6 text-emerald-400" />
+                  <WhatsAppIcon className="w-6 h-6 text-emerald-400" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold">{data?.live_chat_label || t('live_chat')}</h4>
-                  <p className="text-white/40">{t('available_24_7')}</p>
+                  <p className="text-white/40 group-hover:text-primary transition-colors">WhatsApp {phone}</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 

@@ -95,18 +95,18 @@ const LandingPageSchema = new Schema(
       section_badge: { type: String, default: 'Get In Touch' },
       heading: { type: String, default: 'Have Questions? We Have Answers' },
       subheading: { type: String, default: null },
-      email: { type: String, default: 'hello@reelease.ai' },
-      phone: { type: String, default: null },
+      email: { type: String, default: 'info@omfinitive.com' },
+      phone: { type: String, default: '+91 99794 57999' },
       address: { type: String, default: null },
       live_chat_label: { type: String, default: 'Available 24/7' }
     },
 
     footer: {
       tagline: { type: String, default: null },
-      copyright: { type: String, default: '© 2024 Reelease AI. All Rights Reserved.' },
-      address: { type: String, default: '123 AI Street, Tech City, TC 12345' },
-      phone: { type: String, default: '+1 (234) 567-890' },
-      email: { type: String, default: 'support@reelease.ai' },
+      copyright: { type: String, default: '© 2026 Social Ominfinitive. All Rights Reserved.' },
+      address: { type: String, default: 'Africa • Qatar • USA' },
+      phone: { type: String, default: '+91 99794 57999' },
+      email: { type: String, default: 'info@omfinitive.com' },
       social_links: [SocialLinkSchema]
     }
   },

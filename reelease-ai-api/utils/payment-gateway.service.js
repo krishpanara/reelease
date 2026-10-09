@@ -537,7 +537,7 @@ const PayPalService = {
           plan_id: paypalPlanId,
           custom_id: userId ? userId.toString() : undefined,
           application_context: {
-            brand_name: process.env.APP_NAME || 'Reelease AI',
+            brand_name: process.env.APP_NAME || 'Social Ominfinitive',
             locale: 'en-US',
             shipping_preference: 'NO_SHIPPING',
             user_action: 'SUBSCRIBE_NOW',
